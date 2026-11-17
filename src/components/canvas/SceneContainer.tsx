@@ -57,7 +57,7 @@ export const SceneContainer: React.FC = () => {
           />
 
           {/* Post-Processing Pipeline */}
-          <EffectComposer multisampling={0} disableNormalPass>
+          <EffectComposer multisampling={0} enableNormalPass={false}>
             <Bloom
               luminanceThreshold={0.55}
               luminanceSmoothing={0.35}

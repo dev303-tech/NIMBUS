@@ -317,8 +317,13 @@ export const ProceduralCity: React.FC = () => {
               {/* Pulsing Beacon Ring */}
               <mesh
                 onClick={() => setActiveDistrict(isSelected ? null : district)}
-                onPointerOver={() => setActiveDistrict(district)}
-                cursor="pointer"
+                onPointerOver={() => {
+                  document.body.style.cursor = 'pointer';
+                  setActiveDistrict(district);
+                }}
+                onPointerOut={() => {
+                  document.body.style.cursor = 'auto';
+                }}
               >
                 <sphereGeometry args={[1.2, 16, 16]} />
                 <meshBasicMaterial
