@@ -1,6 +1,11 @@
 # NIMBUS — The Atmospheric Descent
 ### Awwwards / FWA / CSSDA Site of the Day Caliber Urban Air Quality Experience
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-dev303--tech.github.io%2FNIMBUS-007ACC?style=for-the-badge&logo=github)](https://dev303-tech.github.io/NIMBUS/)
+[![Build & Deploy](https://img.shields.io/badge/Status-Deployed_Online-success?style=for-the-badge)](https://dev303-tech.github.io/NIMBUS/)
+
+> 🚀 **Live Production URL:** [https://dev303-tech.github.io/NIMBUS/](https://dev303-tech.github.io/NIMBUS/)
+
 > *"The whole website is ONE continuous 3D world. Scrolling is an altitude descent from the stratosphere, through cloud decks, into the city's thermal inversion layer, down to street level. The sky IS the data visualization."*
 
 ---
