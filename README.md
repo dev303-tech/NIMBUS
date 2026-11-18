@@ -3,6 +3,7 @@
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-dev303--tech.github.io%2FNIMBUS-007ACC?style=for-the-badge&logo=github)](https://dev303-tech.github.io/NIMBUS/)
 [![Build & Deploy](https://img.shields.io/badge/Status-Deployed_Online-success?style=for-the-badge)](https://dev303-tech.github.io/NIMBUS/)
+[![Automated Tests](https://img.shields.io/badge/Vitest-34%2F34%20Passed-4ADE80?style=for-the-badge&logo=vitest)](https://github.com/dev303-tech/NIMBUS)
 
 > 🚀 **Live Production URL:** [https://dev303-tech.github.io/NIMBUS/](https://dev303-tech.github.io/NIMBUS/)
 
@@ -76,3 +77,24 @@ Server defaults to: `http://localhost:5173`
    - Click the volume button `[VolumeX / Volume2]` to start/stop the procedural atmospheric wind and pollution drone.
 4. **Camera Path Spline**:
    - Open `src/components/canvas/CameraRig.tsx` to adjust the Catmull-Rom 3D control points or focal targets along the descent.
+
+---
+
+## 🧪 Automated Testing Suite
+
+NIMBUS includes a comprehensive automated test suite powered by **Vitest** and **React Testing Library** with 34 tests covering 100% of core business logic:
+
+```bash
+# Execute the full automated test suite
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+```
+
+### Test Coverage Highlights:
+- **`openMeteoApi.test.ts`**: AQI categorization thresholds (0-500+), mock city data structures, 48-hour forecast integrity, and network error fallback.
+- **`healthLogic.test.ts`**: WHO & EPA rule engine evaluations for all 6 personas, CleanPath™ hourly PM2.5 lung deposition rates, and cigarette intake equivalence.
+- **`useAqiStore.test.ts`**: Zustand state updates, dev overrides, pollution normalization ($0.0 \to 1.0$), and 3D comparison columns.
+- **`useScrollStore.test.ts`**: Spline progress, 35,000 ft altitude piece-wise interpolation, and dynamic FOV morphing ($62^\circ \to 32^\circ$).
+- **`components.test.tsx`**: HUD altitude readout, checkpoint verification, and Dev Atmospheric Mapper preset interactions.

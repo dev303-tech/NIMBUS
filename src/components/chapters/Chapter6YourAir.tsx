@@ -12,7 +12,7 @@ const PERSONAS: Array<{ id: UserPersona; label: string; desc: string }> = [
   { id: 'commuter', label: 'Pedestrian Commuter', desc: 'Standard ambient walking & public transit exposure.' },
 ];
 
-function evaluatePrescription(persona: UserPersona, aqi: number): PersonaPrescription {
+export function evaluatePrescription(persona: UserPersona, aqi: number): PersonaPrescription {
   let verdict: 'Go' | 'Careful' | 'Stay in' = 'Go';
   let verdictColor = '#4ADE80';
   let mask = 'No mask required.';
