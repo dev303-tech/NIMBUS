@@ -3,7 +3,8 @@
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-dev303--tech.github.io%2FNIMBUS-007ACC?style=for-the-badge&logo=github)](https://dev303-tech.github.io/NIMBUS/)
 [![Build & Deploy](https://img.shields.io/badge/Status-Deployed_Online-success?style=for-the-badge)](https://dev303-tech.github.io/NIMBUS/)
-[![Automated Tests](https://img.shields.io/badge/Vitest-34%2F34%20Passed-4ADE80?style=for-the-badge&logo=vitest)](https://github.com/dev303-tech/NIMBUS)
+[![Automated Tests](https://img.shields.io/badge/Vitest-40%2F40%20Passed-4ADE80?style=for-the-badge&logo=vitest)](https://github.com/dev303-tech/NIMBUS)
+[![WCAG Accessibility](https://img.shields.io/badge/A11y-WCAG%202.1%20AA-059669?style=for-the-badge)](https://github.com/dev303-tech/NIMBUS)
 
 > 🚀 **Live Production URL:** [https://dev303-tech.github.io/NIMBUS/](https://dev303-tech.github.io/NIMBUS/)
 

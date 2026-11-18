@@ -7,6 +7,7 @@ import { DevAqiSlider } from './components/hud/DevAqiSlider';
 import { CitySearchModal } from './components/overlays/CitySearchModal';
 import { AirPosterModal } from './components/overlays/AirPosterModal';
 import { IntroLoader } from './components/overlays/IntroLoader';
+import { AccessibleAtmosphericData } from './components/a11y/AccessibleAtmosphericData';
 
 // Chapters
 import { Chapter1Stratosphere } from './components/chapters/Chapter1Stratosphere';
@@ -123,7 +124,8 @@ export const App: React.FC = () => {
       <AirPosterModal isOpen={isPosterOpen} onClose={() => setIsPosterOpen(false)} />
 
       {/* Scrollable Storyboard DOM Chapters (7 Pinned / Scrubbed Stages) */}
-      <main className="relative z-10 w-full pointer-events-auto">
+      <main id="main-content" role="main" aria-label="NIMBUS 7-Stage Atmospheric Air Quality Descent" className="relative z-10 w-full pointer-events-auto">
+        <AccessibleAtmosphericData />
         <Chapter1Stratosphere />
         <Chapter2CloudDeck />
         <Chapter3TheLayer />

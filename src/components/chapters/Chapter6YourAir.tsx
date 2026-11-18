@@ -214,14 +214,16 @@ export const Chapter6YourAir: React.FC = () => {
         </p>
 
         {/* Persona Selector Buttons */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-8 font-tech">
+        <div role="tablist" aria-label="Physiological user profile selector" className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-8 font-tech">
           {PERSONAS.map((p) => {
             const isSelected = activePersona === p.id;
             return (
               <button
                 key={p.id}
+                role="tab"
+                aria-selected={isSelected}
                 onClick={() => setActivePersona(p.id)}
-                className={`p-3 text-left border transition-all cursor-pointer ${
+                className={`p-3 text-left border transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8A858] ${
                   isSelected
                     ? 'border-[#E8A858] bg-[#E8A858]/15 shadow-lg'
                     : 'border-white/10 hover:border-white/30 text-[#8E99A8]'

@@ -27,8 +27,13 @@ export const SceneContainer: React.FC = () => {
   );
 
   return (
-    <div className="fixed inset-0 w-full h-full pointer-events-auto z-0">
+    <div 
+      className="fixed inset-0 w-full h-full pointer-events-auto z-0"
+      role="region"
+      aria-label="3D Interactive Atmospheric Air Quality Simulation"
+    >
       <Canvas
+        aria-hidden="true"
         camera={{ position: [0, 270, 150], fov: 62, near: 0.1, far: 2000 }}
         dpr={[1, 2]}
         gl={{

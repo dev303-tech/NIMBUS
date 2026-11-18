@@ -30,10 +30,10 @@ export const TopNav: React.FC<TopNavProps> = ({ onOpenSearch, onToggleDev, isDev
   else if (aqi > 50) aqiColor = '#B8A882';
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 px-6 py-4 flex items-center justify-between pointer-events-none">
+    <header role="banner" aria-label="NIMBUS Global Telemetry & Navigation" className="fixed top-0 left-0 right-0 z-40 px-6 py-4 flex items-center justify-between pointer-events-none">
       {/* Brand & Telemetry Chip */}
       <div className="flex items-center gap-5 pointer-events-auto">
-        <a href="#stratosphere" className="group flex items-center gap-2.5 text-decoration-none">
+        <a href="#stratosphere" aria-label="NIMBUS Homepage and Start of Descent" className="group flex items-center gap-2.5 text-decoration-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8A858] rounded">
           <span className="font-display text-2xl font-light tracking-[0.22em] text-white group-hover:text-[#E8A858] transition-colors">
             NIMBUS
           </span>
@@ -54,24 +54,30 @@ export const TopNav: React.FC<TopNavProps> = ({ onOpenSearch, onToggleDev, isDev
       </div>
 
       {/* Right Controls */}
-      <div className="flex items-center gap-3 pointer-events-auto">
+      <div className="flex items-center gap-3 pointer-events-auto" role="toolbar" aria-label="Environmental controls">
         {/* City Selector Button */}
         <button
           onClick={onOpenSearch}
-          className="atmospheric-plate px-3.5 py-1.5 flex items-center gap-2 text-xs font-tech text-white hover:border-[#E8A858]/50 transition-all cursor-pointer group"
+          aria-label={`Current location: ${data.cityName}, ${data.country}. Click to change coordinate location.`}
+          className="atmospheric-plate px-3.5 py-1.5 flex items-center gap-2 text-xs font-tech text-white hover:border-[#E8A858]/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8A858] transition-all cursor-pointer group"
           title="Change location"
         >
-          <Search size={12} className="text-[#8E99A8] group-hover:text-[#E8A858] transition-colors" />
+          <Search size={12} className="text-[#8E99A8] group-hover:text-[#E8A858] transition-colors" aria-hidden="true" />
           <span className="font-medium text-xs tracking-wide">
             {data.cityName}
             {data.country ? `, ${data.country}` : ''}
           </span>
-          {isLoading && <RefreshCw size={11} className="animate-spin text-[#8E99A8]" />}
+          {isLoading && <RefreshCw size={11} className="animate-spin text-[#8E99A8]" aria-hidden="true" />}
         </button>
 
         {/* Live AQI Badge */}
-        <div className="atmospheric-plate px-3 py-1.5 flex items-center gap-2 text-xs font-tech border border-white/10">
-          <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: aqiColor }} />
+        <div 
+          className="atmospheric-plate px-3 py-1.5 flex items-center gap-2 text-xs font-tech border border-white/10"
+          role="status"
+          aria-live="polite"
+          aria-label={`Live Air Quality Index: ${aqi}`}
+        >
+          <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: aqiColor }} aria-hidden="true" />
           <span className="text-[#8E99A8] text-[10px] tracking-wider uppercase">AQI</span>
           <span className="font-bold text-sm tracking-tight text-white">{aqi}</span>
           {devAqiOverride !== null && (
@@ -82,27 +88,31 @@ export const TopNav: React.FC<TopNavProps> = ({ onOpenSearch, onToggleDev, isDev
         {/* Ambient Sound Toggle */}
         <button
           onClick={toggleSound}
-          className={`atmospheric-plate p-2 text-xs border transition-all cursor-pointer ${
+          aria-label={isAudioActive ? 'Mute procedural atmospheric sound' : 'Enable procedural atmospheric wind and pollution drone'}
+          aria-pressed={isAudioActive}
+          className={`atmospheric-plate p-2 text-xs border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8A858] transition-all cursor-pointer ${
             isAudioActive
               ? 'border-[#E8A858] text-[#E8A858] bg-[#E8A858]/10'
               : 'border-white/10 text-[#8E99A8] hover:text-white'
           }`}
           title={isAudioActive ? 'Mute atmospheric sound' : 'Enable procedural atmospheric audio'}
         >
-          {isAudioActive ? <Volume2 size={14} /> : <VolumeX size={14} />}
+          {isAudioActive ? <Volume2 size={14} aria-hidden="true" /> : <VolumeX size={14} aria-hidden="true" />}
         </button>
 
         {/* Dev AQI Scrubber Toggle */}
         <button
           onClick={onToggleDev}
-          className={`atmospheric-plate p-2 text-xs border transition-all cursor-pointer ${
+          aria-label="Toggle developer atmospheric pollution mapper slider"
+          aria-expanded={isDevOpen}
+          className={`atmospheric-plate p-2 text-xs border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8A858] transition-all cursor-pointer ${
             isDevOpen
               ? 'border-[#E8A858] text-[#E8A858]'
               : 'border-white/10 text-[#8E99A8] hover:text-white'
           }`}
           title="Toggle AQI Dev Preview Scrubber"
         >
-          <Sliders size={14} />
+          <Sliders size={14} aria-hidden="true" />
         </button>
       </div>
     </header>

@@ -61,30 +61,40 @@ export const CitySearchModal: React.FC<CitySearchModalProps> = ({ isOpen, onClos
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="city-search-title"
+    >
       <div className="w-full max-w-lg atmospheric-plate border border-white/15 p-6 shadow-2xl font-tech">
         {/* Header */}
         <div className="flex items-center justify-between hairline-b pb-3 mb-4">
           <div className="flex items-center gap-2">
-            <MapPin size={16} className="text-[#E8A858]" />
-            <h2 className="font-display text-lg tracking-wide text-white font-normal">
+            <MapPin size={16} className="text-[#E8A858]" aria-hidden="true" />
+            <h2 id="city-search-title" className="font-display text-lg tracking-wide text-white font-normal">
               Atmospheric Coordinate Select
             </h2>
           </div>
-          <button onClick={onClose} className="text-[#8E99A8] hover:text-white transition-colors cursor-pointer">
-            <X size={16} />
+          <button 
+            onClick={onClose}
+            aria-label="Close coordinate selection modal"
+            className="text-[#8E99A8] hover:text-white transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-[#E8A858] p-1 rounded"
+          >
+            <X size={16} aria-hidden="true" />
           </button>
         </div>
 
         {/* Input */}
         <div className="relative mb-4">
-          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8E99A8]" />
+          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8E99A8]" aria-hidden="true" />
           <input
             type="text"
             value={query}
             onChange={(e) => handleSearch(e.target.value)}
             placeholder="Search world city (e.g. Paris, Tokyo, Zurich)..."
-            className="w-full bg-[#050B14]/80 border border-white/20 pl-9 pr-3 py-2.5 text-xs text-white placeholder-[#8E99A8] outline-none focus:border-[#E8A858] transition-colors"
+            aria-label="Search city by name"
+            className="w-full bg-[#050B14]/80 border border-white/20 pl-9 pr-3 py-2.5 text-xs text-white placeholder-[#8E99A8] outline-none focus:border-[#E8A858] focus-visible:ring-2 focus-visible:ring-[#E8A858] transition-colors"
             autoFocus
           />
           {isSearching && (

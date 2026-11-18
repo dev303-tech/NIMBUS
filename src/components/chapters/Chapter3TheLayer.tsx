@@ -87,14 +87,17 @@ export const Chapter3TheLayer: React.FC = () => {
         </h2>
 
         {/* Pollutant Tabs */}
-        <div className="flex flex-wrap gap-2 mb-8">
+        <div role="tablist" aria-label="Atmospheric pollutant selector" className="flex flex-wrap gap-2 mb-8">
           {POLLUTANTS.map((p) => {
             const isSelected = activePollutant === p.id;
             return (
               <button
                 key={p.id}
+                role="tab"
+                aria-selected={isSelected}
+                aria-controls={`panel-${p.id}`}
                 onClick={() => setActivePollutant(p.id)}
-                className={`atmospheric-plate px-4 py-3 border font-tech text-xs flex items-center gap-3 transition-all cursor-pointer ${
+                className={`atmospheric-plate px-4 py-3 border font-tech text-xs flex items-center gap-3 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8A858] ${
                   isSelected
                     ? 'border-white text-white bg-white/10 scale-105 shadow-xl'
                     : 'border-white/10 text-[#8E99A8] hover:border-white/30 hover:text-white'
