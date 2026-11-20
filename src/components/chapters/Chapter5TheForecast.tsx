@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAqiStore } from '../../store/useAqiStore';
-import { Sun, Sparkles, AlertTriangle, Clock } from 'lucide-react';
+import { Sparkles, AlertTriangle, Clock } from 'lucide-react';
 
 export const Chapter5TheForecast: React.FC = () => {
   const data = useAqiStore((s) => s.data);
@@ -8,12 +8,13 @@ export const Chapter5TheForecast: React.FC = () => {
   const setForecastScrubIndex = useAqiStore((s) => s.setForecastScrubIndex);
 
   const forecast = data.forecast || [];
-  const currentScrub = forecast[forecastScrubIndex] || forecast[0] || {
-    hourLabel: '12:00',
-    aqi: 50,
-    pm2_5: 12,
-    o3: 35,
-  };
+  const currentScrub = forecast[forecastScrubIndex] ||
+    forecast[0] || {
+      hourLabel: '12:00',
+      aqi: 50,
+      pm2_5: 12,
+      o3: 35,
+    };
 
   return (
     <section
@@ -32,7 +33,8 @@ export const Chapter5TheForecast: React.FC = () => {
         </h2>
 
         <p className="font-tech text-sm text-[#C8D1DC] leading-relaxed max-w-xl mb-8">
-          Time is mapped across the horizon. Scrubbing below drives the 3D sun across the celestial sphere, updating atmospheric scattering and photochemical haze in real time.
+          Time is mapped across the horizon. Scrubbing below drives the 3D sun across the celestial
+          sphere, updating atmospheric scattering and photochemical haze in real time.
         </p>
 
         {/* Current Scrubbed Focus Card */}
@@ -70,7 +72,8 @@ export const Chapter5TheForecast: React.FC = () => {
             <div>
               <div className="text-[10px] text-[#8E99A8] uppercase">PM₂.₅ CONC.</div>
               <div className="text-2xl font-tech font-bold text-white mt-1">
-                {currentScrub.pm2_5} <span className="text-xs font-normal text-[#8E99A8]">µg/m³</span>
+                {currentScrub.pm2_5}{' '}
+                <span className="text-xs font-normal text-[#8E99A8]">µg/m³</span>
               </div>
             </div>
             <div>
@@ -118,10 +121,7 @@ export const Chapter5TheForecast: React.FC = () => {
                   }`}
                 >
                   <span className="text-[9px] text-[#8E99A8]">{f.hourLabel}</span>
-                  <div
-                    className="w-full h-1.5 my-1"
-                    style={{ backgroundColor: barColor }}
-                  />
+                  <div className="w-full h-1.5 my-1" style={{ backgroundColor: barColor }} />
                   <span className="text-[10px] font-bold text-white">{f.aqi}</span>
                 </button>
               );

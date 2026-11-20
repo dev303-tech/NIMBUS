@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Building2, Navigation, Compass, ShieldCheck, Flame, ArrowRight } from 'lucide-react';
+import { Building2, Compass, ShieldCheck } from 'lucide-react';
 import { useAqiStore } from '../../store/useAqiStore';
 
 export const Chapter4TheCity: React.FC = () => {
   const data = useAqiStore((s) => s.data);
   const getEffectiveAqi = useAqiStore((s) => s.getEffectiveAqi);
   const baseAqi = getEffectiveAqi();
-  const basePm25 = data.pm2_5 || (baseAqi * 0.45);
+  const basePm25 = data.pm2_5 || baseAqi * 0.45;
 
   const [selectedRoute, setSelectedRoute] = useState<'arterial' | 'cleanpath'>('cleanpath');
 
@@ -21,7 +21,9 @@ export const Chapter4TheCity: React.FC = () => {
   const arterialInhaledUg = Math.round(arterialPm25 * 1.65);
   const cleanPathInhaledUg = Math.round(cleanPathPm25 * 1.65);
   const avoidedUg = arterialInhaledUg - cleanPathInhaledUg;
-  const avoidedPercent = Math.round(((arterialInhaledUg - cleanPathInhaledUg) / arterialInhaledUg) * 100);
+  const avoidedPercent = Math.round(
+    ((arterialInhaledUg - cleanPathInhaledUg) / arterialInhaledUg) * 100
+  );
 
   // Berkeley Earth metric: ~22 µg/m³ 24h exposure ≈ 1 cigarette ≈ ~400 µg total inhaled mass
   const avoidedCigarettes = (avoidedUg / 400).toFixed(2);
@@ -43,7 +45,10 @@ export const Chapter4TheCity: React.FC = () => {
         </h2>
 
         <p className="font-tech text-sm text-[#C8D1DC] leading-relaxed max-w-2xl mb-8">
-          Beneath the inversion ceiling, vertical skyscrapers restrict aerodynamic ventilation. Traffic emissions and industrial plumes become trapped in closed vortex loops, causing microclimate AQI fluctuations of up to <strong className="text-[#E8A858]">±40 points</strong> between districts.
+          Beneath the inversion ceiling, vertical skyscrapers restrict aerodynamic ventilation.
+          Traffic emissions and industrial plumes become trapped in closed vortex loops, causing
+          microclimate AQI fluctuations of up to{' '}
+          <strong className="text-[#E8A858]">±40 points</strong> between districts.
         </p>
 
         {/* Microclimate Cards Grid */}
@@ -126,14 +131,19 @@ export const Chapter4TheCity: React.FC = () => {
               }`}
             >
               <div className="flex justify-between items-baseline">
-                <span className="font-bold text-xs uppercase tracking-wider">Route A: Arterial Canyon</span>
-                <span className="text-[#E05318] font-bold text-xs">+{Math.round((arterialPm25 / basePm25 - 1) * 100)}% Smog</span>
+                <span className="font-bold text-xs uppercase tracking-wider">
+                  Route A: Arterial Canyon
+                </span>
+                <span className="text-[#E05318] font-bold text-xs">
+                  +{Math.round((arterialPm25 / basePm25 - 1) * 100)}% Smog
+                </span>
               </div>
               <div className="text-[10px] text-[#8E99A8] mt-1">
                 Direct motor corridor. Trapped NO₂ and diesel particulate vortex.
               </div>
               <div className="mt-2 text-lg font-mono font-bold text-white">
-                {arterialInhaledUg} µg <span className="text-xs font-normal text-[#8E99A8]">PM₂.₅ Inhaled</span>
+                {arterialInhaledUg} µg{' '}
+                <span className="text-xs font-normal text-[#8E99A8]">PM₂.₅ Inhaled</span>
               </div>
             </button>
 
@@ -150,13 +160,16 @@ export const Chapter4TheCity: React.FC = () => {
                   <ShieldCheck size={12} />
                   Route B: CleanPath™ Eco-Corridor
                 </span>
-                <span className="text-green-400 font-bold text-xs">-{avoidedPercent}% Toxic Load</span>
+                <span className="text-green-400 font-bold text-xs">
+                  -{avoidedPercent}% Toxic Load
+                </span>
               </div>
               <div className="text-[10px] text-[#8E99A8] mt-1">
                 Parkway & waterfront greenway. Natural foliar vegetative filtration.
               </div>
               <div className="mt-2 text-lg font-mono font-bold text-green-400">
-                {cleanPathInhaledUg} µg <span className="text-xs font-normal text-[#8E99A8]">PM₂.₅ Inhaled</span>
+                {cleanPathInhaledUg} µg{' '}
+                <span className="text-xs font-normal text-[#8E99A8]">PM₂.₅ Inhaled</span>
               </div>
             </button>
           </div>
@@ -164,7 +177,9 @@ export const Chapter4TheCity: React.FC = () => {
           {/* CleanPath Comparative Payoff */}
           <div className="p-3 bg-black/40 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
             <div>
-              <span className="text-[#8E99A8] text-[10px] uppercase block">PULMONARY EXPOSURE AVOIDED:</span>
+              <span className="text-[#8E99A8] text-[10px] uppercase block">
+                PULMONARY EXPOSURE AVOIDED:
+              </span>
               <span className="text-sm font-bold text-white font-mono">
                 -{avoidedUg} µg PM₂.₅ Inhaled Mass
               </span>
@@ -174,7 +189,9 @@ export const Chapter4TheCity: React.FC = () => {
             </div>
 
             <div className="text-right">
-              <span className="text-[9px] text-[#8E99A8] uppercase block">VENTILATION CALCULATION:</span>
+              <span className="text-[9px] text-[#8E99A8] uppercase block">
+                VENTILATION CALCULATION:
+              </span>
               <span className="text-[10px] font-mono text-[#8DA9C4]">
                 55 L/min × 30 min = 1,650 L Ambient Air
               </span>

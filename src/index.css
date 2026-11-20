@@ -1,13 +1,13 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --bg-void: #050B14;
-  --sky-pristine-zenith: #0B2545;
-  --sky-pristine-horizon: #8DA9C4;
-  --smog-amber: #B87D3B;
-  --smog-rust: #6B3421;
-  --text-primary: #EEF2F6;
-  --text-muted: #8E99A8;
+  --bg-void: #050b14;
+  --sky-pristine-zenith: #0b2545;
+  --sky-pristine-horizon: #8da9c4;
+  --smog-amber: #b87d3b;
+  --smog-rust: #6b3421;
+  --text-primary: #eef2f6;
+  --text-muted: #8e99a8;
   --border-hairline: rgba(238, 242, 246, 0.09);
   --border-accent: rgba(232, 168, 88, 0.35);
 }
@@ -20,7 +20,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 
@@ -51,13 +52,19 @@ body {
 /* Custom Typography */
 .font-display {
   font-family: 'Fraunces', serif;
-  font-variation-settings: 'opsz' 144, 'wght' 300, 'SOFT' 40;
+  font-variation-settings:
+    'opsz' 144,
+    'wght' 300,
+    'SOFT' 40;
 }
 
 .font-display-italic {
   font-family: 'Fraunces', serif;
   font-style: italic;
-  font-variation-settings: 'opsz' 144, 'wght' 300, 'SOFT' 50;
+  font-variation-settings:
+    'opsz' 144,
+    'wght' 300,
+    'SOFT' 50;
 }
 
 .font-tech {
@@ -102,7 +109,7 @@ body {
 }
 
 /* Dev scrubber styling */
-input[type="range"].dev-slider {
+input[type='range'].dev-slider {
   -webkit-appearance: none;
   appearance: none;
   background: rgba(255, 255, 255, 0.15);
@@ -111,19 +118,19 @@ input[type="range"].dev-slider {
   outline: none;
 }
 
-input[type="range"].dev-slider::-webkit-slider-thumb {
+input[type='range'].dev-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: #E8A858;
+  background: #e8a858;
   cursor: pointer;
   box-shadow: 0 0 10px rgba(232, 168, 88, 0.5);
   transition: transform 0.15s ease;
 }
 
-input[type="range"].dev-slider::-webkit-slider-thumb:hover {
+input[type='range'].dev-slider::-webkit-slider-thumb:hover {
   transform: scale(1.3);
 }
 

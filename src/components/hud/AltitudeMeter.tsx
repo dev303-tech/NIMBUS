@@ -36,9 +36,7 @@ export const AltitudeMeter: React.FC = () => {
           <span>{altitudeFt.toLocaleString()}</span>
           <span className="text-[10px] text-[#8E99A8] font-normal">FT</span>
         </div>
-        <div className="text-[10px] font-tech text-[#8E99A8]">
-          {altitudeM.toLocaleString()} M
-        </div>
+        <div className="text-[10px] font-tech text-[#8E99A8]">{altitudeM.toLocaleString()} M</div>
       </div>
 
       {/* Vertical Altitude Rail */}

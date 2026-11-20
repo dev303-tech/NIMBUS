@@ -57,9 +57,7 @@ export const IntroLoader: React.FC = () => {
         <div className="text-xs uppercase tracking-widest text-[#8DA9C4]">
           Urban Air Quality Assistant
         </div>
-        <div className="font-mono text-3xl font-light text-[#E8A858] pt-2">
-          {percent}%
-        </div>
+        <div className="font-mono text-3xl font-light text-[#E8A858] pt-2">{percent}%</div>
       </div>
 
       {/* Bottom Progress Bar & Stage */}

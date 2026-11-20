@@ -150,7 +150,12 @@ export const ProceduralCity: React.FC = () => {
   // Traffic & Industrial Emission Plumes
   const plumeParticles = useMemo(() => {
     const list: Array<{ x: number; y: number; z: number; speed: number; phase: number }> = [];
-    const roots: Array<[number, number]> = [[32, -30], [0, 0], [15, -12], [-20, 15]];
+    const roots: Array<[number, number]> = [
+      [32, -30],
+      [0, 0],
+      [15, -12],
+      [-20, 15],
+    ];
     for (let i = 0; i < 400; i++) {
       const root = roots[i % roots.length];
       list.push({
@@ -180,7 +185,7 @@ export const ProceduralCity: React.FC = () => {
     for (let i = 0; i < plumeParticles.length; i++) {
       const p = plumeParticles[i];
       let y = (p.y + time * p.speed * 8.5) % 36.0;
-      const x = p.x + Math.sin(time + p.phase) * 1.8 + (y * 0.22);
+      const x = p.x + Math.sin(time + p.phase) * 1.8 + y * 0.22;
       const z = p.z + Math.cos(time + p.phase) * 1.4;
       array[i * 3] = x;
       array[i * 3 + 1] = y;
@@ -189,8 +194,10 @@ export const ProceduralCity: React.FC = () => {
     posAttr.needsUpdate = true;
 
     // 2. Update Traffic Photon Streams
-    const hArr = (headlightGeo.getAttribute('position') as THREE.BufferAttribute).array as Float32Array;
-    const tArr = (taillightGeo.getAttribute('position') as THREE.BufferAttribute).array as Float32Array;
+    const hArr = (headlightGeo.getAttribute('position') as THREE.BufferAttribute)
+      .array as Float32Array;
+    const tArr = (taillightGeo.getAttribute('position') as THREE.BufferAttribute)
+      .array as Float32Array;
     let hIdx = 0;
     let tIdx = 0;
 
@@ -200,7 +207,9 @@ export const ProceduralCity: React.FC = () => {
       if (pos < -60) pos += 120;
       if (pos > 60) pos -= 120;
 
-      let x = 0, y = 0.4, z = 0;
+      let x = 0,
+        y = 0.4,
+        z = 0;
       if (v.axis === 'x') {
         x = pos;
         z = v.offset + v.lane;
@@ -366,8 +375,11 @@ export const ProceduralCity: React.FC = () => {
                       <div className="mt-2 text-[10px] text-[#A6B2C0] space-y-1 hairline-t pt-1.5">
                         <div className="flex justify-between">
                           <span>Local Dispersion:</span>
-                          <span className={district.aqiDelta > 0 ? 'text-[#E05318]' : 'text-[#5296D5]'}>
-                            {district.aqiDelta > 0 ? `+${district.aqiDelta}` : district.aqiDelta} AQI
+                          <span
+                            className={district.aqiDelta > 0 ? 'text-[#E05318]' : 'text-[#5296D5]'}
+                          >
+                            {district.aqiDelta > 0 ? `+${district.aqiDelta}` : district.aqiDelta}{' '}
+                            AQI
                           </span>
                         </div>
                         <div className="text-[9px] text-[#8E99A8] italic">

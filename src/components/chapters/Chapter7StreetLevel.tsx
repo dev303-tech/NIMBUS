@@ -1,27 +1,60 @@
 import React, { useState } from 'react';
 import { useAqiStore } from '../../store/useAqiStore';
 import { CityComparison } from '../../types/aqi';
-import { Share2, Bell, Plus, Check, Trash2, ExternalLink } from 'lucide-react';
+import { Share2, Bell, Plus, Check, Trash2 } from 'lucide-react';
 
 interface Chapter7Props {
   onOpenPoster: () => void;
 }
 
 const GLOBAL_BENCHMARKS: CityComparison[] = [
-  { name: 'Reykjavik', country: 'Iceland', aqi: 14, pm2_5: 2.8, status: 'Pristine Arctic', color: '#8DA9C4' },
-  { name: 'Tokyo', country: 'Japan', aqi: 28, pm2_5: 6.8, status: 'Pristine Maritime', color: '#5296D5' },
-  { name: 'Zurich', country: 'Switzerland', aqi: 32, pm2_5: 7.2, status: 'Alpine Crisp', color: '#8DA9C4' },
+  {
+    name: 'Reykjavik',
+    country: 'Iceland',
+    aqi: 14,
+    pm2_5: 2.8,
+    status: 'Pristine Arctic',
+    color: '#8DA9C4',
+  },
+  {
+    name: 'Tokyo',
+    country: 'Japan',
+    aqi: 28,
+    pm2_5: 6.8,
+    status: 'Pristine Maritime',
+    color: '#5296D5',
+  },
+  {
+    name: 'Zurich',
+    country: 'Switzerland',
+    aqi: 32,
+    pm2_5: 7.2,
+    status: 'Alpine Crisp',
+    color: '#8DA9C4',
+  },
   { name: 'London', country: 'UK', aqi: 68, pm2_5: 16.4, status: 'Moderate', color: '#B8A882' },
-  { name: 'Los Angeles', country: 'USA', aqi: 134, pm2_5: 48.9, status: 'Inversion Haze', color: '#C87832' },
-  { name: 'New Delhi', country: 'India', aqi: 278, pm2_5: 182.4, status: 'Severe Smog', color: '#A0381E' },
+  {
+    name: 'Los Angeles',
+    country: 'USA',
+    aqi: 134,
+    pm2_5: 48.9,
+    status: 'Inversion Haze',
+    color: '#C87832',
+  },
+  {
+    name: 'New Delhi',
+    country: 'India',
+    aqi: 278,
+    pm2_5: 182.4,
+    status: 'Severe Smog',
+    color: '#A0381E',
+  },
 ];
 
 export const Chapter7StreetLevel: React.FC<Chapter7Props> = ({ onOpenPoster }) => {
   const comparisonCities = useAqiStore((s) => s.comparisonCities);
   const addComparisonCity = useAqiStore((s) => s.addComparisonCity);
   const removeComparisonCity = useAqiStore((s) => s.removeComparisonCity);
-  const currentCity = useAqiStore((s) => s.data);
-  const getEffectiveAqi = useAqiStore((s) => s.getEffectiveAqi);
 
   const [alertSubscribed, setAlertSubscribed] = useState(false);
   const [emailInput, setEmailInput] = useState('');
@@ -52,7 +85,9 @@ export const Chapter7StreetLevel: React.FC<Chapter7Props> = ({ onOpenPoster }) =
         </h2>
 
         <p className="font-tech text-sm text-[#C8D1DC] leading-relaxed max-w-2xl mb-8">
-          You have reached ground level. The floating translucent cylinders in the 3D scene directly model the ambient particulate volume and solar extinction of global metropolitan air columns.
+          You have reached ground level. The floating translucent cylinders in the 3D scene directly
+          model the ambient particulate volume and solar extinction of global metropolitan air
+          columns.
         </p>
 
         {/* 3D Comparative Columns Manager */}
@@ -91,9 +126,7 @@ export const Chapter7StreetLevel: React.FC<Chapter7Props> = ({ onOpenPoster }) =
                   )}
                 </div>
                 <div className="mt-2 flex items-baseline justify-between">
-                  <span className="text-lg font-bold text-white font-mono">
-                    AQI {c.aqi}
-                  </span>
+                  <span className="text-lg font-bold text-white font-mono">AQI {c.aqi}</span>
                   <span className="text-[9px] text-[#8E99A8]">{c.pm2_5} µg</span>
                 </div>
               </div>
@@ -119,7 +152,9 @@ export const Chapter7StreetLevel: React.FC<Chapter7Props> = ({ onOpenPoster }) =
                   }`}
                 >
                   <Plus size={9} />
-                  <span>{bench.name} ({bench.aqi})</span>
+                  <span>
+                    {bench.name} ({bench.aqi})
+                  </span>
                 </button>
               );
             })}
@@ -138,7 +173,8 @@ export const Chapter7StreetLevel: React.FC<Chapter7Props> = ({ onOpenPoster }) =
                 Export Atmospheric Dossier
               </h3>
               <p className="text-xs text-[#C8D1DC] leading-relaxed mb-4">
-                Generate a high-resolution typographic Swiss art poster capturing today&apos;s real-time air quality metrics, particulate ratios, and coordinates.
+                Generate a high-resolution typographic Swiss art poster capturing today&apos;s
+                real-time air quality metrics, particulate ratios, and coordinates.
               </p>
             </div>
 
@@ -161,7 +197,8 @@ export const Chapter7StreetLevel: React.FC<Chapter7Props> = ({ onOpenPoster }) =
                 Inversion Boundary Alert
               </h3>
               <p className="text-xs text-[#C8D1DC] leading-relaxed mb-4">
-                Receive early morning push notifications whenever local thermal inversions trap ground particulates above WHO exposure limits.
+                Receive early morning push notifications whenever local thermal inversions trap
+                ground particulates above WHO exposure limits.
               </p>
             </div>
 
@@ -195,9 +232,7 @@ export const Chapter7StreetLevel: React.FC<Chapter7Props> = ({ onOpenPoster }) =
 
       {/* Footer Reference Standards */}
       <footer className="mt-16 pt-8 hairline-t flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-tech text-[#8E99A8]">
-        <div>
-          NIMBUS AIR INTELLIGENCE // CONTINUOUS 3D ATMOSPHERIC DESCENT
-        </div>
+        <div>NIMBUS AIR INTELLIGENCE // CONTINUOUS 3D ATMOSPHERIC DESCENT</div>
         <div className="flex items-center gap-4">
           <span>DATA: OPEN-METEO CAMS / GFS</span>
           <span>•</span>

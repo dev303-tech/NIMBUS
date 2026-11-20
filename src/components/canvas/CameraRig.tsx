@@ -12,28 +12,38 @@ export const CameraRig: React.FC = () => {
 
   // Spline points for camera flight path aligned to story chapters
   const pathSpline = useMemo(() => {
-    return new THREE.CatmullRomCurve3([
-      new THREE.Vector3(0, 270, 150),    // Ch 1: Stratosphere (p = 0.00)
-      new THREE.Vector3(0, 152, 92),     // Ch 2: Cloud Deck (p = 0.17)
-      new THREE.Vector3(12, 62, 46),     // Ch 3: The Layer (p = 0.35)
-      new THREE.Vector3(-4, 22, 22),     // Ch 4: The City (p = 0.52)
-      new THREE.Vector3(6, 12, 16),      // Ch 5: Forecast (p = 0.68)
-      new THREE.Vector3(3, 6, 12),       // Ch 6: Your Air (p = 0.83)
-      new THREE.Vector3(0, 2.2, 9.5),    // Ch 7: Street Level (p = 1.00)
-    ], false, 'catmullrom', 0.5);
+    return new THREE.CatmullRomCurve3(
+      [
+        new THREE.Vector3(0, 270, 150), // Ch 1: Stratosphere (p = 0.00)
+        new THREE.Vector3(0, 152, 92), // Ch 2: Cloud Deck (p = 0.17)
+        new THREE.Vector3(12, 62, 46), // Ch 3: The Layer (p = 0.35)
+        new THREE.Vector3(-4, 22, 22), // Ch 4: The City (p = 0.52)
+        new THREE.Vector3(6, 12, 16), // Ch 5: Forecast (p = 0.68)
+        new THREE.Vector3(3, 6, 12), // Ch 6: Your Air (p = 0.83)
+        new THREE.Vector3(0, 2.2, 9.5), // Ch 7: Street Level (p = 1.00)
+      ],
+      false,
+      'catmullrom',
+      0.5
+    );
   }, []);
 
   // Spline points for camera focal target
   const targetSpline = useMemo(() => {
-    return new THREE.CatmullRomCurve3([
-      new THREE.Vector3(0, 230, 0),      // Ch 1 lookahead
-      new THREE.Vector3(0, 122, 0),      // Ch 2 cloud core
-      new THREE.Vector3(0, 38, 0),       // Ch 3 inversion layer
-      new THREE.Vector3(0, 14, -8),      // Ch 4 skyline center
-      new THREE.Vector3(0, 8, -6),       // Ch 5 solar horizon
-      new THREE.Vector3(0, 5, -8),       // Ch 6 rooftop raking light
-      new THREE.Vector3(0, 14, -18),     // Ch 7 street looking up
-    ], false, 'catmullrom', 0.5);
+    return new THREE.CatmullRomCurve3(
+      [
+        new THREE.Vector3(0, 230, 0), // Ch 1 lookahead
+        new THREE.Vector3(0, 122, 0), // Ch 2 cloud core
+        new THREE.Vector3(0, 38, 0), // Ch 3 inversion layer
+        new THREE.Vector3(0, 14, -8), // Ch 4 skyline center
+        new THREE.Vector3(0, 8, -6), // Ch 5 solar horizon
+        new THREE.Vector3(0, 5, -8), // Ch 6 rooftop raking light
+        new THREE.Vector3(0, 14, -18), // Ch 7 street looking up
+      ],
+      false,
+      'catmullrom',
+      0.5
+    );
   }, []);
 
   const currentPos = useRef(new THREE.Vector3(0, 270, 150));

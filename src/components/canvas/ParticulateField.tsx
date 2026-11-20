@@ -37,7 +37,7 @@ export const ParticulateField: React.FC = () => {
       let typeIdx = 0;
       const rand = Math.random();
       if (rand < 0.35) typeIdx = 0;
-      else if (rand < 0.60) typeIdx = 1;
+      else if (rand < 0.6) typeIdx = 1;
       else if (rand < 0.85) typeIdx = 2;
       else typeIdx = 3;
 
@@ -80,33 +80,45 @@ export const ParticulateField: React.FC = () => {
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       const radius = 6 + Math.random() * 80;
       const theta = Math.random() * Math.PI * 2;
-      dummy.position.set(Math.cos(theta) * radius, 12 + Math.random() * 175, Math.sin(theta) * radius);
+      dummy.position.set(
+        Math.cos(theta) * radius,
+        12 + Math.random() * 175,
+        Math.sin(theta) * radius
+      );
       dummy.updateMatrix();
       mesh.setMatrixAt(i, dummy.matrix);
     }
     mesh.instanceMatrix.needsUpdate = true;
   }, [dummy]);
 
-  const uniforms = useMemo(() => ({
-    uTime: { value: 0 },
-    uPollution: { value: 0.2 },
-    uActivePollutant: { value: 0 },
-    uMousePos: { value: new THREE.Vector3(0, 0, 0) },
-    uAltitude: { value: 1.0 },
-  }), []);
+  const uniforms = useMemo(
+    () => ({
+      uTime: { value: 0 },
+      uPollution: { value: 0.2 },
+      uActivePollutant: { value: 0 },
+      uMousePos: { value: new THREE.Vector3(0, 0, 0) },
+      uAltitude: { value: 1.0 },
+    }),
+    []
+  );
 
   // Map active pollutant string to float index
   const activePollutantCode = useMemo(() => {
     switch (activePollutant) {
-      case 'pm25': return 1.0;
-      case 'pm10': return 2.0;
-      case 'no2': return 3.0;
-      case 'o3': return 4.0;
-      default: return 0.0;
+      case 'pm25':
+        return 1.0;
+      case 'pm10':
+        return 2.0;
+      case 'no2':
+        return 3.0;
+      case 'o3':
+        return 4.0;
+      default:
+        return 0.0;
     }
   }, [activePollutant]);
 
-  useFrame((state, delta) => {
+  useFrame((state, _delta) => {
     if (!matRef.current) return;
 
     const time = state.clock.getElapsedTime();
@@ -117,7 +129,9 @@ export const ParticulateField: React.FC = () => {
 
     // Approximate mouse world intersection for repulsion
     raycaster.setFromCamera(new THREE.Vector2(mouseNorm.x, mouseNorm.y), camera);
-    const mouseWorld = raycaster.ray.origin.clone().add(raycaster.ray.direction.clone().multiplyScalar(40));
+    const mouseWorld = raycaster.ray.origin
+      .clone()
+      .add(raycaster.ray.direction.clone().multiplyScalar(40));
     matRef.current.uniforms.uMousePos.value.copy(mouseWorld);
   });
 
@@ -132,18 +146,12 @@ export const ParticulateField: React.FC = () => {
           attach="attributes-aPollutantType"
           args={[instanceData.types, 1]}
         />
-        <instancedBufferAttribute
-          attach="attributes-aColor"
-          args={[instanceData.colors, 3]}
-        />
+        <instancedBufferAttribute attach="attributes-aColor" args={[instanceData.colors, 3]} />
         <instancedBufferAttribute
           attach="attributes-aVelocity"
           args={[instanceData.velocities, 3]}
         />
-        <instancedBufferAttribute
-          attach="attributes-aBaseScale"
-          args={[instanceData.scales, 1]}
-        />
+        <instancedBufferAttribute attach="attributes-aBaseScale" args={[instanceData.scales, 1]} />
       </planeGeometry>
       <shaderMaterial
         ref={matRef}

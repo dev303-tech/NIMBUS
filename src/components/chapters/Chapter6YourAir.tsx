@@ -1,15 +1,39 @@
 import React from 'react';
 import { useAqiStore } from '../../store/useAqiStore';
 import { UserPersona, PersonaPrescription } from '../../types/aqi';
-import { UserCheck, Shield, Clock, Compass, AlertOctagon, CheckCircle2, AlertTriangle } from 'lucide-react';
+import { Shield, Clock } from 'lucide-react';
 
 const PERSONAS: Array<{ id: UserPersona; label: string; desc: string }> = [
-  { id: 'runner', label: 'Endurance Runner', desc: '5x–6x elevated minute ventilation rate (~60 L/min).' },
-  { id: 'asthma', label: 'Asthma / Respiratory', desc: 'Hyper-reactive airway lining prone to NO2 spasms.' },
-  { id: 'child', label: 'Child (<8 yrs)', desc: 'Stroller breathing height aligns with tailpipe exhaust.' },
-  { id: 'senior', label: 'Senior / Cardiovascular', desc: 'Ultrafine particle vascular constriction vulnerability.' },
-  { id: 'cyclist', label: 'Urban Cyclist', desc: 'High cadence breathing along congested motor corridors.' },
-  { id: 'commuter', label: 'Pedestrian Commuter', desc: 'Standard ambient walking & public transit exposure.' },
+  {
+    id: 'runner',
+    label: 'Endurance Runner',
+    desc: '5x–6x elevated minute ventilation rate (~60 L/min).',
+  },
+  {
+    id: 'asthma',
+    label: 'Asthma / Respiratory',
+    desc: 'Hyper-reactive airway lining prone to NO2 spasms.',
+  },
+  {
+    id: 'child',
+    label: 'Child (<8 yrs)',
+    desc: 'Stroller breathing height aligns with tailpipe exhaust.',
+  },
+  {
+    id: 'senior',
+    label: 'Senior / Cardiovascular',
+    desc: 'Ultrafine particle vascular constriction vulnerability.',
+  },
+  {
+    id: 'cyclist',
+    label: 'Urban Cyclist',
+    desc: 'High cadence breathing along congested motor corridors.',
+  },
+  {
+    id: 'commuter',
+    label: 'Pedestrian Commuter',
+    desc: 'Standard ambient walking & public transit exposure.',
+  },
 ];
 
 export function evaluatePrescription(persona: UserPersona, aqi: number): PersonaPrescription {
@@ -27,21 +51,24 @@ export function evaluatePrescription(persona: UserPersona, aqi: number): Persona
         verdictColor = '#4ADE80';
         mask = 'No mask required. Ambient airway clearance optimal.';
         window = '06:00 – 09:30 (Pre-ozone formation).';
-        reasoning = 'Clean atmospheric baseline allows vigorous aerobic training without alveolar alveolar particle loading.';
+        reasoning =
+          'Clean atmospheric baseline allows vigorous aerobic training without alveolar alveolar particle loading.';
         checklist = ['Hydrate normally', 'Enjoy outdoor route'];
       } else if (aqi <= 100) {
         verdict = 'Careful';
         verdictColor = '#FBBF24';
         mask = 'Optional lightweight particulate band if sensitive.';
         window = '06:30 – 08:00 (Prior to secondary photochemical synthesis).';
-        reasoning = 'Elevated respiratory rate (50+ L/min) multiplies particulate intake 5x. Route through parklands away from truck corridors.';
+        reasoning =
+          'Elevated respiratory rate (50+ L/min) multiplies particulate intake 5x. Route through parklands away from truck corridors.';
         checklist = ['Avoid multi-lane arterials', 'Cap long run duration to 45 mins'];
       } else {
         verdict = 'Stay in';
         verdictColor = '#EF4444';
         mask = 'N95 / FFP2 mandatory if outdoors.';
         window = 'Indoor treadmill in HEPA-filtered space.';
-        reasoning = 'Deep inhalation during strenuous exertion bypasses upper mucosal filters, depositing toxic PM2.5 directly into terminal bronchioles.';
+        reasoning =
+          'Deep inhalation during strenuous exertion bypasses upper mucosal filters, depositing toxic PM2.5 directly into terminal bronchioles.';
         checklist = ['Move workout indoors', 'Seal gym windows', 'Run HEPA air purifier'];
       }
       break;
@@ -59,14 +86,19 @@ export function evaluatePrescription(persona: UserPersona, aqi: number): Persona
         verdictColor = '#FBBF24';
         mask = 'Surgical or KF94 mask recommended near busy avenues.';
         window = '12:00 – 16:00 (Thermal mixing disperses ground NO2).';
-        reasoning = 'Nitrogen dioxide and particulate allergens can trigger hyper-reactive bronchial spasms.';
-        checklist = ['Keep fast-acting rescue inhaler accessible', 'Avoid early morning thermal inversions'];
+        reasoning =
+          'Nitrogen dioxide and particulate allergens can trigger hyper-reactive bronchial spasms.';
+        checklist = [
+          'Keep fast-acting rescue inhaler accessible',
+          'Avoid early morning thermal inversions',
+        ];
       } else {
         verdict = 'Stay in';
         verdictColor = '#EF4444';
         mask = 'Certified N95 / FFP2 tight-seal mask.';
         window = 'Remain in climate-controlled indoor filtration environment.';
-        reasoning = 'Severe airway inflammation risk. WHO and pulmonology guidelines advise minimizing all non-essential outdoor exposure.';
+        reasoning =
+          'Severe airway inflammation risk. WHO and pulmonology guidelines advise minimizing all non-essential outdoor exposure.';
         checklist = ['Pre-medicate as advised by physician', 'Run indoor HEPA filter on high'];
       }
       break;
@@ -84,14 +116,19 @@ export function evaluatePrescription(persona: UserPersona, aqi: number): Persona
         verdictColor = '#FBBF24';
         mask = 'Child-sized KF80 or cloth barrier if near traffic.';
         window = 'Afternoon (Avoid morning school-run traffic peaks).';
-        reasoning = 'Children breathe faster per pound of body weight, and stroller height directly matches vehicle tailpipe discharge heights.';
-        checklist = ['Avoid stroller walks along arterial roads', 'Prioritize tree-covered neighborhood parks'];
+        reasoning =
+          'Children breathe faster per pound of body weight, and stroller height directly matches vehicle tailpipe discharge heights.';
+        checklist = [
+          'Avoid stroller walks along arterial roads',
+          'Prioritize tree-covered neighborhood parks',
+        ];
       } else {
         verdict = 'Stay in';
         verdictColor = '#EF4444';
         mask = 'Pediatric certified particulate respirator.';
         window = 'Indoor play spaces only.';
-        reasoning = 'High particulate exposure during formative lung development is clinically linked to reduced lifetime lung capacity.';
+        reasoning =
+          'High particulate exposure during formative lung development is clinically linked to reduced lifetime lung capacity.';
         checklist = ['Keep school recess indoors', 'Ensure indoor air filtration'];
       }
       break;
@@ -109,14 +146,16 @@ export function evaluatePrescription(persona: UserPersona, aqi: number): Persona
         verdictColor = '#FBBF24';
         mask = 'Lightweight mask recommended.';
         window = '11:00 – 15:00.';
-        reasoning = 'Ultrafine particles can provoke micro-vascular constriction and elevate resting blood pressure.';
+        reasoning =
+          'Ultrafine particles can provoke micro-vascular constriction and elevate resting blood pressure.';
         checklist = ['Pace outdoor walking gently', 'Stay hydrated'];
       } else {
         verdict = 'Stay in';
         verdictColor = '#EF4444';
         mask = 'N95 / FFP2 mask.';
         window = 'Remain indoors.';
-        reasoning = 'High correlation between elevated PM2.5 episodes and acute cardiovascular events in elder populations.';
+        reasoning =
+          'High correlation between elevated PM2.5 episodes and acute cardiovascular events in elder populations.';
         checklist = ['Keep windows closed', 'Take prescribed cardiovascular meds on schedule'];
       }
       break;
@@ -134,14 +173,19 @@ export function evaluatePrescription(persona: UserPersona, aqi: number): Persona
         verdictColor = '#FBBF24';
         mask = 'Valved sport particulate mask (FFP2/N95 equivalent).';
         window = 'Choose off-peak traffic hours.';
-        reasoning = 'Drafting behind buses and diesel trucks dramatically elevates direct black carbon inhalation.';
-        checklist = ['Reroute to designated cycle greenways', 'Avoid stopping behind idling exhaust pipes'];
+        reasoning =
+          'Drafting behind buses and diesel trucks dramatically elevates direct black carbon inhalation.';
+        checklist = [
+          'Reroute to designated cycle greenways',
+          'Avoid stopping behind idling exhaust pipes',
+        ];
       } else {
         verdict = 'Stay in';
         verdictColor = '#EF4444';
         mask = 'High-grade sealed respirator.';
         window = 'Switch to metro/subway or indoor spinning.';
-        reasoning = 'Cardiopulmonary stress from vigorous cycling in heavy smog negates cardiovascular fitness benefits.';
+        reasoning =
+          'Cardiopulmonary stress from vigorous cycling in heavy smog negates cardiovascular fitness benefits.';
         checklist = ['Take electric rail / closed cabin transit', 'Postpone long outdoor rides'];
       }
       break;
@@ -153,21 +197,24 @@ export function evaluatePrescription(persona: UserPersona, aqi: number): Persona
         verdictColor = '#4ADE80';
         mask = 'Optional.';
         window = 'Standard commute times.';
-        reasoning = 'General population physiological clearance mechanisms can handle moderate ambient loads.';
+        reasoning =
+          'General population physiological clearance mechanisms can handle moderate ambient loads.';
         checklist = ['Normal transit routine'];
       } else if (aqi <= 160) {
         verdict = 'Careful';
         verdictColor = '#FBBF24';
         mask = 'Surgical or KF94 mask on open street corridors.';
         window = 'Minimize prolonged roadside wait times.';
-        reasoning = 'Prolonged exposure to trapped street canyon exhaust causes throat dryness and mild headache.';
+        reasoning =
+          'Prolonged exposure to trapped street canyon exhaust causes throat dryness and mild headache.';
         checklist = ['Keep car ventilation on recirculate', 'Wear mask while waiting for bus/tram'];
       } else {
         verdict = 'Stay in';
         verdictColor = '#EF4444';
         mask = 'N95 / FFP2 mask mandatory for any pedestrian transit.';
         window = 'Limit transit to essential travel only.';
-        reasoning = 'Hazardous ambient particulate density. Direct mucosal irritation and general health strain.';
+        reasoning =
+          'Hazardous ambient particulate density. Direct mucosal irritation and general health strain.';
         checklist = ['Wear tight-seal mask outdoors', 'Run indoor filtration upon arrival'];
       }
       break;
@@ -175,7 +222,7 @@ export function evaluatePrescription(persona: UserPersona, aqi: number): Persona
 
   return {
     persona,
-    title: PERSONAS.find(p => p.id === persona)?.label || 'Urban Citizen',
+    title: PERSONAS.find((p) => p.id === persona)?.label || 'Urban Citizen',
     verdict,
     verdictColor,
     maskRecommendation: mask,
@@ -210,11 +257,16 @@ export const Chapter6YourAir: React.FC = () => {
         </h2>
 
         <p className="font-tech text-xs text-[#8E99A8] mb-8">
-          Strictly rule-based guidance calculated from World Health Organization (WHO 2021) and EPA AQI epidemiological thresholds. No hallucinated AI claims.
+          Strictly rule-based guidance calculated from World Health Organization (WHO 2021) and EPA
+          AQI epidemiological thresholds. No hallucinated AI claims.
         </p>
 
         {/* Persona Selector Buttons */}
-        <div role="tablist" aria-label="Physiological user profile selector" className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-8 font-tech">
+        <div
+          role="tablist"
+          aria-label="Physiological user profile selector"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-8 font-tech"
+        >
           {PERSONAS.map((p) => {
             const isSelected = activePersona === p.id;
             return (
@@ -229,7 +281,9 @@ export const Chapter6YourAir: React.FC = () => {
                     : 'border-white/10 hover:border-white/30 text-[#8E99A8]'
                 }`}
               >
-                <div className={`font-semibold text-xs ${isSelected ? 'text-white' : 'text-[#8E99A8]'}`}>
+                <div
+                  className={`font-semibold text-xs ${isSelected ? 'text-white' : 'text-[#8E99A8]'}`}
+                >
                   {p.label}
                 </div>
                 <div className="text-[9px] text-[#8E99A8] mt-1 leading-tight line-clamp-2">
@@ -254,7 +308,9 @@ export const Chapter6YourAir: React.FC = () => {
 
             {/* Huge Verdict Badge */}
             <div className="flex items-center gap-3">
-              <span className="text-xs uppercase tracking-widest text-[#8E99A8]">OUTDOOR VERDICT:</span>
+              <span className="text-xs uppercase tracking-widest text-[#8E99A8]">
+                OUTDOOR VERDICT:
+              </span>
               <span
                 className="px-4 py-1.5 text-base font-bold uppercase tracking-wider border shadow-lg"
                 style={{

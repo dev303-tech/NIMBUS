@@ -27,7 +27,7 @@ export const SceneContainer: React.FC = () => {
   );
 
   return (
-    <div 
+    <div
       className="fixed inset-0 w-full h-full pointer-events-auto z-0"
       role="region"
       aria-label="3D Interactive Atmospheric Air Quality Simulation"
@@ -63,21 +63,13 @@ export const SceneContainer: React.FC = () => {
 
           {/* Post-Processing Pipeline */}
           <EffectComposer multisampling={0} enableNormalPass={false}>
-            <Bloom
-              luminanceThreshold={0.55}
-              luminanceSmoothing={0.35}
-              intensity={bloomIntensity}
-            />
+            <Bloom luminanceThreshold={0.55} luminanceSmoothing={0.35} intensity={bloomIntensity} />
             <ChromaticAberration
               offset={chromaOffset}
               radialModulation={true}
               modulationOffset={0.35}
             />
-            <Vignette
-              eskil={false}
-              offset={0.15}
-              darkness={0.6 + pollutionNorm * 0.2}
-            />
+            <Vignette eskil={false} offset={0.15} darkness={0.6 + pollutionNorm * 0.2} />
           </EffectComposer>
         </Suspense>
       </Canvas>

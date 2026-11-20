@@ -28,10 +28,38 @@ interface AqiState {
 }
 
 const DEFAULT_COMPARISONS: CityComparison[] = [
-  { name: 'Reykjavik', country: 'Iceland', aqi: 14, pm2_5: 2.8, status: 'Pristine Arctic Air', color: '#8DA9C4' },
-  { name: 'Tokyo', country: 'Japan', aqi: 28, pm2_5: 6.8, status: 'Pristine Maritime Air', color: '#5296D5' },
-  { name: 'London', country: 'UK', aqi: 68, pm2_5: 16.4, status: 'Moderate Transmittance', color: '#B8A882' },
-  { name: 'New Delhi', country: 'India', aqi: 278, pm2_5: 182.4, status: 'Severe Particulate Occlusion', color: '#A0381E' },
+  {
+    name: 'Reykjavik',
+    country: 'Iceland',
+    aqi: 14,
+    pm2_5: 2.8,
+    status: 'Pristine Arctic Air',
+    color: '#8DA9C4',
+  },
+  {
+    name: 'Tokyo',
+    country: 'Japan',
+    aqi: 28,
+    pm2_5: 6.8,
+    status: 'Pristine Maritime Air',
+    color: '#5296D5',
+  },
+  {
+    name: 'London',
+    country: 'UK',
+    aqi: 68,
+    pm2_5: 16.4,
+    status: 'Moderate Transmittance',
+    color: '#B8A882',
+  },
+  {
+    name: 'New Delhi',
+    country: 'India',
+    aqi: 278,
+    pm2_5: 182.4,
+    status: 'Severe Particulate Occlusion',
+    color: '#A0381E',
+  },
 ];
 
 export const useAqiStore = create<AqiState>((set, get) => ({
@@ -77,11 +105,11 @@ export const useAqiStore = create<AqiState>((set, get) => ({
 
   addComparisonCity: (city) => {
     const current = get().comparisonCities;
-    if (current.find(c => c.name.toLowerCase() === city.name.toLowerCase())) return;
+    if (current.find((c) => c.name.toLowerCase() === city.name.toLowerCase())) return;
     set({ comparisonCities: [...current.slice(-2), city] });
   },
 
   removeComparisonCity: (name) => {
-    set({ comparisonCities: get().comparisonCities.filter(c => c.name !== name) });
-  }
+    set({ comparisonCities: get().comparisonCities.filter((c) => c.name !== name) });
+  },
 }));

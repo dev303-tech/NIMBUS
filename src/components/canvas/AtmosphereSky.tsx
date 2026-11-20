@@ -15,19 +15,23 @@ export const AtmosphereSky: React.FC = () => {
   const matRef = useRef<THREE.ShaderMaterial>(null);
   const lerpedPollution = useRef(0.2);
 
-  const uniforms = useMemo(() => ({
-    uTime: { value: 0 },
-    uPollution: { value: 0.2 },
-    uSunPos: { value: new THREE.Vector3(200, 350, -400) },
-    uAltitude: { value: 1.0 },
-  }), []);
+  const uniforms = useMemo(
+    () => ({
+      uTime: { value: 0 },
+      uPollution: { value: 0.2 },
+      uSunPos: { value: new THREE.Vector3(200, 350, -400) },
+      uAltitude: { value: 1.0 },
+    }),
+    []
+  );
 
   useFrame((state, delta) => {
     if (!matRef.current) return;
 
     // Smoothly lerp pollution uniform
     const targetPollution = getPollutionNorm();
-    lerpedPollution.current += (targetPollution - lerpedPollution.current) * Math.min(1.0, delta * 3.0);
+    lerpedPollution.current +=
+      (targetPollution - lerpedPollution.current) * Math.min(1.0, delta * 3.0);
 
     matRef.current.uniforms.uTime.value = state.clock.getElapsedTime();
     matRef.current.uniforms.uPollution.value = lerpedPollution.current;
@@ -35,7 +39,7 @@ export const AtmosphereSky: React.FC = () => {
 
     // Calculate dynamic Sun Position
     if (chapter === 5) {
-      const sunAngle = ((forecastScrubIndex / 48) * Math.PI) - Math.PI * 0.1;
+      const sunAngle = (forecastScrubIndex / 48) * Math.PI - Math.PI * 0.1;
       const sunX = Math.cos(sunAngle) * 500;
       const sunY = Math.sin(sunAngle) * 350 + 80;
       matRef.current.uniforms.uSunPos.value.set(sunX, sunY, -400);

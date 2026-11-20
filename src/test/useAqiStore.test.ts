@@ -25,7 +25,7 @@ describe('useAqiStore State & Action Suite', () => {
 
   it('correctly calculates pollution normalization between 0.0 and 1.0', () => {
     const store = useAqiStore.getState();
-    
+
     expect(store.getPollutionNorm()).toBeCloseTo(68 / 300, 2);
 
     store.setDevAqiOverride(30);
@@ -87,9 +87,9 @@ describe('useAqiStore State & Action Suite', () => {
 
     // Capped at 3 maximum visible 3D columns
     expect(useAqiStore.getState().comparisonCities.length).toBeLessThanOrEqual(3);
-    expect(useAqiStore.getState().comparisonCities.some(c => c.name === 'Oslo')).toBe(true);
+    expect(useAqiStore.getState().comparisonCities.some((c) => c.name === 'Oslo')).toBe(true);
 
     store.removeComparisonCity('Oslo');
-    expect(useAqiStore.getState().comparisonCities.some(c => c.name === 'Oslo')).toBe(false);
+    expect(useAqiStore.getState().comparisonCities.some((c) => c.name === 'Oslo')).toBe(false);
   });
 });

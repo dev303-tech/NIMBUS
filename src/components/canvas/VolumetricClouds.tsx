@@ -11,23 +11,29 @@ export const VolumetricClouds: React.FC = () => {
   const matRef1 = useRef<THREE.ShaderMaterial>(null);
   const matRef2 = useRef<THREE.ShaderMaterial>(null);
 
-  const uniforms1 = useMemo(() => ({
-    uTime: { value: 0 },
-    uPollution: { value: 0.2 },
-    uSunPos: { value: new THREE.Vector3(220, 380, -450) },
-    uCameraPos: { value: new THREE.Vector3() },
-    uCloudDensity: { value: 1.1 },
-  }), []);
+  const uniforms1 = useMemo(
+    () => ({
+      uTime: { value: 0 },
+      uPollution: { value: 0.2 },
+      uSunPos: { value: new THREE.Vector3(220, 380, -450) },
+      uCameraPos: { value: new THREE.Vector3() },
+      uCloudDensity: { value: 1.1 },
+    }),
+    []
+  );
 
-  const uniforms2 = useMemo(() => ({
-    uTime: { value: 0 },
-    uPollution: { value: 0.2 },
-    uSunPos: { value: new THREE.Vector3(220, 380, -450) },
-    uCameraPos: { value: new THREE.Vector3() },
-    uCloudDensity: { value: 0.9 },
-  }), []);
+  const uniforms2 = useMemo(
+    () => ({
+      uTime: { value: 0 },
+      uPollution: { value: 0.2 },
+      uSunPos: { value: new THREE.Vector3(220, 380, -450) },
+      uCameraPos: { value: new THREE.Vector3() },
+      uCloudDensity: { value: 0.9 },
+    }),
+    []
+  );
 
-  useFrame((state, delta) => {
+  useFrame((state, _delta) => {
     const time = state.clock.getElapsedTime();
     const pollution = getPollutionNorm();
 

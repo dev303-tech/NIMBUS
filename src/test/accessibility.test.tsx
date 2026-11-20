@@ -10,7 +10,7 @@ describe('WCAG 2.1 AA Accessibility & Screen Reader Compliance', () => {
   describe('AccessibleAtmosphericData Component', () => {
     it('renders accessible live region for assistive technologies', () => {
       render(<AccessibleAtmosphericData />);
-      
+
       const region = screen.getByRole('region', { name: /Accessible Atmospheric Data/i });
       expect(region).toBeTruthy();
 
@@ -20,7 +20,7 @@ describe('WCAG 2.1 AA Accessibility & Screen Reader Compliance', () => {
 
     it('renders structured semantic table for pollutant concentrations', () => {
       render(<AccessibleAtmosphericData />);
-      
+
       const table = screen.getByRole('table');
       expect(table).toBeTruthy();
 
@@ -40,7 +40,7 @@ describe('WCAG 2.1 AA Accessibility & Screen Reader Compliance', () => {
   describe('TopNav Landmark & Interactive Element Accessibility', () => {
     it('has banner role and descriptive accessible labels for all buttons', () => {
       render(<TopNav onOpenSearch={() => {}} onToggleDev={() => {}} isDevOpen={false} />);
-      
+
       expect(screen.getByRole('banner')).toBeTruthy();
 
       // Check accessible names on interactive buttons
@@ -56,7 +56,7 @@ describe('WCAG 2.1 AA Accessibility & Screen Reader Compliance', () => {
 
     it('includes live status indicator for real-time AQI updates', () => {
       render(<TopNav onOpenSearch={() => {}} onToggleDev={() => {}} isDevOpen={false} />);
-      
+
       const liveAqi = screen.getByRole('status');
       expect(liveAqi).toBeTruthy();
       expect(liveAqi.getAttribute('aria-live')).toBe('polite');
@@ -66,7 +66,7 @@ describe('WCAG 2.1 AA Accessibility & Screen Reader Compliance', () => {
   describe('Modal Dialog WCAG Compliance', () => {
     it('CitySearchModal has dialog role, aria-modal, and accessible labelling', () => {
       render(<CitySearchModal isOpen={true} onClose={() => {}} />);
-      
+
       const dialog = screen.getByRole('dialog');
       expect(dialog).toBeTruthy();
       expect(dialog.getAttribute('aria-modal')).toBe('true');
@@ -81,7 +81,7 @@ describe('WCAG 2.1 AA Accessibility & Screen Reader Compliance', () => {
 
     it('AirPosterModal has dialog role, aria-modal, and accessible labelling', () => {
       render(<AirPosterModal isOpen={true} onClose={() => {}} />);
-      
+
       const dialog = screen.getByRole('dialog');
       expect(dialog).toBeTruthy();
       expect(dialog.getAttribute('aria-modal')).toBe('true');

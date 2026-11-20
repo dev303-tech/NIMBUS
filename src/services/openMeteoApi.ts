@@ -4,32 +4,38 @@ export function calculateAqiCategory(aqi: number): { label: string; description:
   if (aqi <= 50) {
     return {
       label: 'Pristine Atmospheric Envelope',
-      description: 'Exceptional solar transmittance. Minimal aerosol scattering. Ideal respiratory conditions across all altitudes.',
+      description:
+        'Exceptional solar transmittance. Minimal aerosol scattering. Ideal respiratory conditions across all altitudes.',
     };
   } else if (aqi <= 100) {
     return {
       label: 'Moderate Transmittance',
-      description: 'Acceptable air quality. Faint microscopic condensation layer visible at lower atmospheric boundary layer.',
+      description:
+        'Acceptable air quality. Faint microscopic condensation layer visible at lower atmospheric boundary layer.',
     };
   } else if (aqi <= 150) {
     return {
       label: 'Thermal Inversion Haze',
-      description: 'Unhealthy for sensitive individuals. Elevated fine aerosol particulate concentration trapped under warmer air.',
+      description:
+        'Unhealthy for sensitive individuals. Elevated fine aerosol particulate concentration trapped under warmer air.',
     };
   } else if (aqi <= 200) {
     return {
       label: 'Combustion Smog',
-      description: 'Unhealthy for all groups. Significant photochemical oxidants and secondary organic aerosol scattering.',
+      description:
+        'Unhealthy for all groups. Significant photochemical oxidants and secondary organic aerosol scattering.',
     };
   } else if (aqi <= 300) {
     return {
       label: 'Severe Particulate Occlusion',
-      description: 'Very unhealthy. Sun disk dims to dull terracotta disc. Intense alveolar penetration risks.',
+      description:
+        'Very unhealthy. Sun disk dims to dull terracotta disc. Intense alveolar penetration risks.',
     };
   } else {
     return {
       label: 'Hazardous Atmospheric Density',
-      description: 'Emergency health conditions. Deep umber sky opacity. Ambient air reaches toxic saturation.',
+      description:
+        'Emergency health conditions. Deep umber sky opacity. Ambient air reaches toxic saturation.',
     };
   }
 }
@@ -53,7 +59,8 @@ export const MOCK_CITIES: Record<string, AirQualityData> = {
     humidity: 52,
     windSpeed: 4.2,
     statusLabel: 'Pristine Atmospheric Envelope',
-    statusDescription: 'Crystal clear maritime air blowing off the Pacific. Pristine high-altitude visibility with crisp cumulus clouds.',
+    statusDescription:
+      'Crystal clear maritime air blowing off the Pacific. Pristine high-altitude visibility with crisp cumulus clouds.',
     forecast: generateMockForecast(28),
     isOfflineMock: true,
   },
@@ -75,7 +82,8 @@ export const MOCK_CITIES: Record<string, AirQualityData> = {
     humidity: 68,
     windSpeed: 3.1,
     statusLabel: 'Moderate Transmittance',
-    statusDescription: 'Slight urban haze trapped beneath marine stratus layer. Normal ventilation in open park corridors.',
+    statusDescription:
+      'Slight urban haze trapped beneath marine stratus layer. Normal ventilation in open park corridors.',
     forecast: generateMockForecast(68),
     isOfflineMock: true,
   },
@@ -97,7 +105,8 @@ export const MOCK_CITIES: Record<string, AirQualityData> = {
     humidity: 38,
     windSpeed: 2.0,
     statusLabel: 'Thermal Inversion Haze',
-    statusDescription: 'Warm air layer capping the LA basin basin, concentrating vehicular emissions and ozone precursor compounds.',
+    statusDescription:
+      'Warm air layer capping the LA basin basin, concentrating vehicular emissions and ozone precursor compounds.',
     forecast: generateMockForecast(134),
     isOfflineMock: true,
   },
@@ -119,10 +128,11 @@ export const MOCK_CITIES: Record<string, AirQualityData> = {
     humidity: 62,
     windSpeed: 1.1,
     statusLabel: 'Severe Particulate Occlusion',
-    statusDescription: 'Heavy winter inversion trapping agrarian smoke and vehicular particulate. Dense bronze particulate sky.',
+    statusDescription:
+      'Heavy winter inversion trapping agrarian smoke and vehicular particulate. Dense bronze particulate sky.',
     forecast: generateMockForecast(278),
     isOfflineMock: true,
-  }
+  },
 };
 
 function generateMockForecast(baseAqi: number): HourlyForecast[] {
@@ -167,7 +177,12 @@ function generateMockForecast(baseAqi: number): HourlyForecast[] {
   return result;
 }
 
-export async function fetchLiveAirQuality(lat: number, lon: number, cityName = 'Local Region', country = ''): Promise<AirQualityData> {
+export async function fetchLiveAirQuality(
+  lat: number,
+  lon: number,
+  cityName = 'Local Region',
+  country = ''
+): Promise<AirQualityData> {
   try {
     const url = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=us_aqi,european_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone&hourly=us_aqi,pm2_5,ozone&timezone=auto&forecast_days=3`;
     const res = await fetch(url);
@@ -195,13 +210,19 @@ export async function fetchLiveAirQuality(lat: number, lon: number, cityName = '
       const t = times[i];
       const d = new Date(t);
       const val = Math.round(aqis[i] ?? aqi);
-      if (val < minAqi) { minAqi = val; minIdx = i; }
-      if (val > maxAqi) { maxAqi = val; maxIdx = i; }
+      if (val < minAqi) {
+        minAqi = val;
+        minIdx = i;
+      }
+      if (val > maxAqi) {
+        maxAqi = val;
+        maxIdx = i;
+      }
       forecast.push({
         time: t,
         hourLabel: `${d.getHours().toString().padStart(2, '0')}:00`,
         aqi: val,
-        pm2_5: pm25s[i] ?? (val * 0.4),
+        pm2_5: pm25s[i] ?? val * 0.4,
         o3: ozones[i] ?? 30,
       });
     }
@@ -236,7 +257,9 @@ export async function fetchLiveAirQuality(lat: number, lon: number, cityName = '
   }
 }
 
-export async function searchCities(query: string): Promise<Array<{ name: string; country: string; latitude: number; longitude: number }>> {
+export async function searchCities(
+  query: string
+): Promise<Array<{ name: string; country: string; latitude: number; longitude: number }>> {
   if (!query || query.trim().length < 2) return [];
   try {
     const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=6&language=en&format=json`;
@@ -249,7 +272,7 @@ export async function searchCities(query: string): Promise<Array<{ name: string;
       latitude: r.latitude,
       longitude: r.longitude,
     }));
-  } catch (e) {
+  } catch {
     return [];
   }
 }

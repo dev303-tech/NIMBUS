@@ -1,10 +1,7 @@
 import React from 'react';
 import { ArrowDown, Radio } from 'lucide-react';
-import { useAqiStore } from '../../store/useAqiStore';
 
 export const Chapter1Stratosphere: React.FC = () => {
-  const data = useAqiStore((s) => s.data);
-
   return (
     <section
       id="stratosphere"
@@ -23,7 +20,9 @@ export const Chapter1Stratosphere: React.FC = () => {
 
         <div className="hidden sm:block text-right font-tech text-xs text-[#8E99A8] space-y-1">
           <div className="text-white tracking-widest uppercase">OPTICAL EXTINCTION</div>
-          <div className="text-[10px] tracking-wider text-[#8DA9C4]">RAYLEIGH SCATTERING DOMINANT</div>
+          <div className="text-[10px] tracking-wider text-[#8DA9C4]">
+            RAYLEIGH SCATTERING DOMINANT
+          </div>
           <div className="text-[10px] tracking-wider">AEROSOL OPTICAL DEPTH: 0.04</div>
         </div>
       </div>
@@ -41,7 +40,9 @@ export const Chapter1Stratosphere: React.FC = () => {
             The Descent through Earth&apos;s atmospheric envelope.
           </p>
           <div className="font-tech text-xs text-[#8E99A8] max-w-sm leading-relaxed">
-            The sky itself is the data visualization. As you descend from 35,000 feet to street level, witness how particulate pollution transforms optical transmittance, solar scattering, and urban breathing corridors.
+            The sky itself is the data visualization. As you descend from 35,000 feet to street
+            level, witness how particulate pollution transforms optical transmittance, solar
+            scattering, and urban breathing corridors.
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAqiStore } from '../../store/useAqiStore';
 import { PollutantId } from '../../types/aqi';
-import { Activity, ShieldAlert, Sparkles, Flame } from 'lucide-react';
+import { ShieldAlert, Flame } from 'lucide-react';
 
 interface PollutantCard {
   id: PollutantId;
@@ -23,7 +23,8 @@ const POLLUTANTS: PollutantCard[] = [
     diameter: '≤ 2.5 µm (1/30th hair width)',
     color: '#9E5A2A',
     source: 'Diesel tailpipes, industrial furnaces, biomass burning, coal power generation.',
-    pathology: 'Bypasses nasal cilia and bronchial mucous membranes to lodge deep within pulmonary alveoli. Crosses the alveolar-capillary barrier into the bloodstream, triggering vascular endothelial inflammation.',
+    pathology:
+      'Bypasses nasal cilia and bronchial mucous membranes to lodge deep within pulmonary alveoli. Crosses the alveolar-capillary barrier into the bloodstream, triggering vascular endothelial inflammation.',
     whoLimit: '15 µg/m³ (24h limit)',
     currentValKey: 'pm2_5',
   },
@@ -33,8 +34,10 @@ const POLLUTANTS: PollutantCard[] = [
     name: 'Inhalable Coarse Aerosols',
     diameter: '≤ 10 µm',
     color: '#C9A066',
-    source: 'Road tyre and brake lining abrasion, construction demolition, wind-borne mineral dust.',
-    pathology: 'Deposits in the upper trachea and primary bronchi. Triggers acute bronchospasms, chronic cough, and exacerbates asthma and COPD flare-ups.',
+    source:
+      'Road tyre and brake lining abrasion, construction demolition, wind-borne mineral dust.',
+    pathology:
+      'Deposits in the upper trachea and primary bronchi. Triggers acute bronchospasms, chronic cough, and exacerbates asthma and COPD flare-ups.',
     whoLimit: '45 µg/m³ (24h limit)',
     currentValKey: 'pm10',
   },
@@ -45,7 +48,8 @@ const POLLUTANTS: PollutantCard[] = [
     diameter: 'Reactive Gas Molecule',
     color: '#E05318',
     source: 'High-temperature vehicular combustion, transit corridors, urban power generation.',
-    pathology: 'Aggressive biological oxidant that corrodes airway epithelial cells, exacerbates pediatric airway inflammation, and suppresses immune resistance to lung infections.',
+    pathology:
+      'Aggressive biological oxidant that corrodes airway epithelial cells, exacerbates pediatric airway inflammation, and suppresses immune resistance to lung infections.',
     whoLimit: '25 µg/m³ (24h limit)',
     currentValKey: 'no2',
   },
@@ -55,8 +59,10 @@ const POLLUTANTS: PollutantCard[] = [
     name: 'Tropospheric Ozone',
     diameter: 'Photochemical Oxidant',
     color: '#4DA8DA',
-    source: 'Secondary photochemical smog formed when NOx and volatile organics react under intense UV solar radiation.',
-    pathology: 'Acts as an internal caustic agent, chemically oxidizing alveolar lining fluid. Causes reduced lung capacity, acute chest tightness, and exercise-induced coughing.',
+    source:
+      'Secondary photochemical smog formed when NOx and volatile organics react under intense UV solar radiation.',
+    pathology:
+      'Acts as an internal caustic agent, chemically oxidizing alveolar lining fluid. Causes reduced lung capacity, acute chest tightness, and exercise-induced coughing.',
     whoLimit: '100 µg/m³ (8h limit)',
     currentValKey: 'o3',
   },
@@ -87,7 +93,11 @@ export const Chapter3TheLayer: React.FC = () => {
         </h2>
 
         {/* Pollutant Tabs */}
-        <div role="tablist" aria-label="Atmospheric pollutant selector" className="flex flex-wrap gap-2 mb-8">
+        <div
+          role="tablist"
+          aria-label="Atmospheric pollutant selector"
+          className="flex flex-wrap gap-2 mb-8"
+        >
           {POLLUTANTS.map((p) => {
             const isSelected = activePollutant === p.id;
             return (
@@ -103,10 +113,7 @@ export const Chapter3TheLayer: React.FC = () => {
                     : 'border-white/10 text-[#8E99A8] hover:border-white/30 hover:text-white'
                 }`}
               >
-                <span
-                  className="w-2.5 h-2.5 rounded-full"
-                  style={{ backgroundColor: p.color }}
-                />
+                <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: p.color }} />
                 <span className="font-bold tracking-wider">{p.formula}</span>
                 <span className="text-[10px] text-[#8E99A8] hidden sm:inline">
                   {p.name.split(' ')[0]}

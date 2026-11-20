@@ -107,19 +107,13 @@ export const Chapter2CloudDeck: React.FC = () => {
               <div className="flex items-center gap-2">
                 <Wind size={13} className="text-[#8DA9C4]" />
                 <span>
-                  WIND:{' '}
-                  <strong className="text-white">
-                    {data.windSpeed ?? 3.4} M/S
-                  </strong>
+                  WIND: <strong className="text-white">{data.windSpeed ?? 3.4} M/S</strong>
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <CloudRain size={13} className="text-[#8DA9C4]" />
                 <span>
-                  HUMIDITY:{' '}
-                  <strong className="text-white">
-                    {data.humidity ?? 55}%
-                  </strong>
+                  HUMIDITY: <strong className="text-white">{data.humidity ?? 55}%</strong>
                 </span>
               </div>
             </div>

@@ -10,7 +10,9 @@ interface CitySearchModalProps {
 
 export const CitySearchModal: React.FC<CitySearchModalProps> = ({ isOpen, onClose }) => {
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState<Array<{ name: string; country: string; latitude: number; longitude: number }>>([]);
+  const [results, setResults] = useState<
+    Array<{ name: string; country: string; latitude: number; longitude: number }>
+  >([]);
   const [isSearching, setIsSearching] = useState(false);
   const [geoError, setGeoError] = useState<string | null>(null);
 
@@ -32,7 +34,12 @@ export const CitySearchModal: React.FC<CitySearchModalProps> = ({ isOpen, onClos
     setIsSearching(false);
   };
 
-  const handleSelectCity = async (c: { name: string; country: string; latitude: number; longitude: number }) => {
+  const handleSelectCity = async (c: {
+    name: string;
+    country: string;
+    latitude: number;
+    longitude: number;
+  }) => {
     await loadCity(c.latitude, c.longitude, c.name, c.country);
     onClose();
   };
@@ -61,7 +68,7 @@ export const CitySearchModal: React.FC<CitySearchModalProps> = ({ isOpen, onClos
   };
 
   return (
-    <div 
+    <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md"
       role="dialog"
       aria-modal="true"
@@ -72,11 +79,14 @@ export const CitySearchModal: React.FC<CitySearchModalProps> = ({ isOpen, onClos
         <div className="flex items-center justify-between hairline-b pb-3 mb-4">
           <div className="flex items-center gap-2">
             <MapPin size={16} className="text-[#E8A858]" aria-hidden="true" />
-            <h2 id="city-search-title" className="font-display text-lg tracking-wide text-white font-normal">
+            <h2
+              id="city-search-title"
+              className="font-display text-lg tracking-wide text-white font-normal"
+            >
               Atmospheric Coordinate Select
             </h2>
           </div>
-          <button 
+          <button
             onClick={onClose}
             aria-label="Close coordinate selection modal"
             className="text-[#8E99A8] hover:text-white transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-[#E8A858] p-1 rounded"
@@ -87,7 +97,11 @@ export const CitySearchModal: React.FC<CitySearchModalProps> = ({ isOpen, onClos
 
         {/* Input */}
         <div className="relative mb-4">
-          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8E99A8]" aria-hidden="true" />
+          <Search
+            size={14}
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8E99A8]"
+            aria-hidden="true"
+          />
           <input
             type="text"
             value={query}
@@ -114,9 +128,7 @@ export const CitySearchModal: React.FC<CitySearchModalProps> = ({ isOpen, onClos
         </button>
 
         {geoError && (
-          <div className="text-[10px] text-[#E05318] mb-3 hairline-b pb-2">
-            {geoError}
-          </div>
+          <div className="text-[10px] text-[#E05318] mb-3 hairline-b pb-2">{geoError}</div>
         )}
 
         {/* Search Results */}

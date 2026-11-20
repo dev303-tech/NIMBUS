@@ -11,7 +11,6 @@ interface DevAqiSliderProps {
 export const DevAqiSlider: React.FC<DevAqiSliderProps> = ({ isOpen, onClose }) => {
   const devAqiOverride = useAqiStore((s) => s.devAqiOverride);
   const setDevAqiOverride = useAqiStore((s) => s.setDevAqiOverride);
-  const data = useAqiStore((s) => s.data);
   const getEffectiveAqi = useAqiStore((s) => s.getEffectiveAqi);
   const getPollutionNorm = useAqiStore((s) => s.getPollutionNorm);
 
@@ -38,9 +37,7 @@ export const DevAqiSlider: React.FC<DevAqiSliderProps> = ({ isOpen, onClose }) =
           <span className="text-xs uppercase tracking-widest text-[#E8A858] font-bold">
             DEV ATMOSPHERIC MAPPER
           </span>
-          <span className="text-[10px] text-[#8E99A8]">
-            uPollution: {pollutionNorm.toFixed(3)}
-          </span>
+          <span className="text-[10px] text-[#8E99A8]">uPollution: {pollutionNorm.toFixed(3)}</span>
         </div>
 
         <div className="flex items-center gap-2">

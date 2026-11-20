@@ -56,11 +56,14 @@ export const VolumetricGodRays: React.FC = () => {
   const getPollutionNorm = useAqiStore((s) => s.getPollutionNorm);
   const progress = useScrollStore((s) => s.progress);
 
-  const uniforms = useMemo(() => ({
-    uTime: { value: 0 },
-    uPollution: { value: 0.2 },
-    uAltitude: { value: 1.0 },
-  }), []);
+  const uniforms = useMemo(
+    () => ({
+      uTime: { value: 0 },
+      uPollution: { value: 0.2 },
+      uAltitude: { value: 1.0 },
+    }),
+    []
+  );
 
   useFrame((state) => {
     if (!matRef.current) return;

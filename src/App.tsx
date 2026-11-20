@@ -85,7 +85,7 @@ export const App: React.FC = () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
     };
-  }, [setProgress, getPollutionNorm]);
+  }, [setProgress, setScrollVelocity, getPollutionNorm]);
 
   // Track Mouse for 3D Camera Parallax and Particle Repulsion
   useEffect(() => {
@@ -124,7 +124,12 @@ export const App: React.FC = () => {
       <AirPosterModal isOpen={isPosterOpen} onClose={() => setIsPosterOpen(false)} />
 
       {/* Scrollable Storyboard DOM Chapters (7 Pinned / Scrubbed Stages) */}
-      <main id="main-content" role="main" aria-label="NIMBUS 7-Stage Atmospheric Air Quality Descent" className="relative z-10 w-full pointer-events-auto">
+      <main
+        id="main-content"
+        role="main"
+        aria-label="NIMBUS 7-Stage Atmospheric Air Quality Descent"
+        className="relative z-10 w-full pointer-events-auto"
+      >
         <AccessibleAtmosphericData />
         <Chapter1Stratosphere />
         <Chapter2CloudDeck />

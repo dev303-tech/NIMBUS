@@ -56,7 +56,7 @@ Captured via NIMBUS — Continuous 3D Atmospheric Descent.`;
   };
 
   return (
-    <div 
+    <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
       role="dialog"
       aria-modal="true"
@@ -67,11 +67,14 @@ Captured via NIMBUS — Continuous 3D Atmospheric Descent.`;
         <div className="flex items-center justify-between hairline-b pb-3 mb-5">
           <div className="flex items-center gap-2 text-xs text-[#E8A858]">
             <Share2 size={14} aria-hidden="true" />
-            <h2 id="poster-modal-title" className="uppercase tracking-widest font-semibold text-xs text-[#E8A858]">
+            <h2
+              id="poster-modal-title"
+              className="uppercase tracking-widest font-semibold text-xs text-[#E8A858]"
+            >
               AIR DOSSIER ARTIFACT
             </h2>
           </div>
-          <button 
+          <button
             onClick={onClose}
             aria-label="Close air dossier artifact modal"
             className="text-[#8E99A8] hover:text-white transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-[#E8A858] p-1 rounded"
